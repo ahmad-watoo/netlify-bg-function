@@ -1,17 +1,20 @@
 import React from "react";
 // import dotenv from "dotenv";
 const TriggerBackground: React.FC = () => {
-  //   const SITE_URL = import.meta.env.VITE_SITE_URL;
+  // const SITE_URL = import.meta.env.VITE_SITE_URL;
   const triggerBackgroundFunction = async () => {
     try {
-      const response = await fetch(`http://localhost:8888/.netlify/functions/netlifyBgFunction`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data: "example" }),
-        credentials: "same-origin", // Include credentials for same-origin requests
-      });
+      const response = await fetch(
+        `http://localhost:8888/.netlify/functions/netlifyBgFunction`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: "Data" }),
+          credentials: "same-origin", // Include credentials for same-origin requests
+        }
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -34,7 +37,7 @@ const TriggerBackground: React.FC = () => {
     <div>
       <h2 className="text-2xl text-blue-400">Netlify functions</h2>
       <button
-        className="rounded rounded-xl font-serif border-none bg-blue-500 text-white px-4 py-2 mt-4 hover:bg-blue-700 transition duration-300"
+        className="rounded-xl font-serif border-none bg-blue-500 text-white px-4 py-2 mt-4 hover:bg-blue-700 transition duration-300"
         onClick={triggerBackgroundFunction}
       >
         Trigger Background Function

@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+[dev]
+  command = "npm start"
+  port = 8888             # Netlify Dev proxy port
+  targetPort = 3000       # React app port (must differ from port)
+  autoLaunch = true
