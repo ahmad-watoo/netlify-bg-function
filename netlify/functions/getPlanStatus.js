@@ -11,7 +11,6 @@ export const handler = async (event) => {
   };
   try {
     const data = await gcsService.gcsfetchResponseFile(
-      // to pass gcsfetchResponseFile instead of gcsfetcResponseFile
       `response/${requestId}.json`
     );
 

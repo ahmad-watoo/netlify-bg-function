@@ -37,7 +37,7 @@ const TriggerBackground: React.FC = () => {
     <div>
       <h2 className="text-2xl text-blue-400">Netlify functions</h2>
       <button
-        className="rounded-xl font-serif border-none bg-blue-500 text-white px-4 py-2 mt-4 hover:bg-blue-700 transition duration-300"
+        className="rounded-xl font-serif border-none bg-green-500 text-white px-4 py-2 mt-4 hover:bg-green-700 transition duration-300"
         onClick={triggerBackgroundFunction}
       >
         Trigger Background Function
