@@ -1,8 +1,17 @@
 import React from "react";
+import TrainingForm from "./TrainingForm";
 // import dotenv from "dotenv";
+// const myData = [
+//   { id: 1, name: "John Doe", age: 25 },
+//   { id: 2, name: "Jane Smith", age: 30 },
+//   { id: 2, name: "Jane Smith", age: 30 },
+//   { id: 3, name: "Alice Johnson", age: 28 },
+//   { id: 4, name: "Bob Brown", age: 35 },
+// ];
 const TriggerBackground: React.FC = () => {
   // const SITE_URL = import.meta.env.VITE_SITE_URL;
-  const triggerBackgroundFunction = async () => {
+  // const SITE_URL = import.meta.env.VITE_SITE_URL;
+  const triggerBackgroundFunction = async (formData?: any) => {
     try {
       const response = await fetch(
         `http://localhost:8888/.netlify/functions/netlifyBgFunction`,
@@ -11,7 +20,9 @@ const TriggerBackground: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ data: "Data" }),
+          body: JSON.stringify({
+            data: formData || { message: "Default background task" },
+          }),
           credentials: "same-origin", // Include credentials for same-origin requests
         }
       );
@@ -35,13 +46,21 @@ const TriggerBackground: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-2xl text-blue-400">Netlify functions</h2>
-      <button
-        className="rounded-xl font-serif border-none bg-green-500 text-white px-4 py-2 mt-4 hover:bg-green-700 transition duration-300"
-        onClick={triggerBackgroundFunction}
-      >
-        Trigger Background Function
-      </button>
+      <h2 className="text-4xl text-center font-mono p-4 text-white">
+        Generate Training Plan..
+      </h2>
+
+      <>
+        <TrainingForm
+          onFinalSubmit={() =>
+            triggerBackgroundFunction({
+              name: "Form User",
+              status: "completed",
+              // Include actual form data here
+            })
+          }
+        />
+      </>
     </div>
   );
 };
